@@ -45,6 +45,12 @@
                     @error('password') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
 
+                <!-- Confirm Password -->
+                <div>
+                     <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                     <input type="password" name="password_confirmation" class="w-full border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2 px-4 border">
+                </div>
+
                 <div class="grid grid-cols-2 gap-6">
                     <!-- Role Selection -->
                     <div>

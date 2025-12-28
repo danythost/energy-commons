@@ -27,6 +27,39 @@ Dashboard Features
 Spam Control
 Steward Roles
 
+Example Laravel Flow
+
+Example: User wants to interact with your contract.
+
+Step 1 — User triggers action (UI)
+
+Laravel receives request.
+
+Step 2 — Laravel builds transaction
+
+A service class builds transaction JSON.
+
+Step 3 — Backend signs or sends it
+
+Via Blockfrost endpoint
+
+OR via cardano-cli (shell_exec calls)
+
+Step 4 — Laravel stores metadata
+
+Database logs:
+
+Tx hash
+
+UTXO state
+
+Contract address
+
+Step 5 — Laravel confirms transaction
+
+Queue worker polls until the tx is confirmed.
+
+
 Aiken (write contract)
    ↓
 aiken build (compile)
@@ -55,4 +88,101 @@ How to compile and upload validators for a real DApp
 lets change what the admin is suppose to see, they are suppose to reject or confirm user's On or Off and with other other operations like the adding other common users like house or shop owner etc
 
 
+Buy Page Implementation - COMPLETED
 
+Proposed Changes
+Routes
+[COMPLETED] 
+routes/web.php
+Added generic route for /buy pointing to BuyController (GET and POST).
+
+Controllers
+[COMPLETED] 
+app/Http/Controllers/BuyController.php
+index(): Return the buy view.
+store(): Handle the purchase logic (placeholder for now/basic structure).
+
+Views
+[COMPLETED] 
+resources/views/buy/index.blade.php
+Extend dashboard.layout.
+Display options to buy power with amount selection.
+Cards for "Bank Transfer" (Opay, Moniepoint), "Token", "Ada".
+Forms to submit purchase.
+
+[COMPLETED] 
+resources/views/dashboard/layout.blade.php
+Buy link routes to /buy.
+
+Verification Plan
+Manual Verification
+Navigate to /buy via the sidebar.
+Verify all three payment options are visible.
+Check the UI responsiveness.
+Select amount and click payment buttons to submit form (placeholder response).
+
+Walkthrough for User Verification:
+
+1. Log in to the application and navigate to the dashboard.
+2. Open the sidebar by clicking the menu button (if on mobile).
+3. Click on the "Buy" link in the sidebar.
+4. You should be redirected to the /buy page, displaying "Buy Power Units" header.
+5. Verify the amount input field is present, defaulting to 1.
+6. Check that three payment option cards are displayed:
+   - Bank Transfer: With Opay and Moniepoint buttons.
+   - Pay with Token: Green card with "Pay with Token" button.
+   - Cardano (ADA): Indigo card with "Connect Wallet" button.
+7. Change the amount to a different number (e.g., 5).
+8. Click on "Opay" under Bank Transfer: Should submit the form with payment_method='bank_opay' and amount=5, redirect back with success message.
+9. Similarly, test "Moniepoint", "Pay with Token", and "Connect Wallet" buttons.
+10. Verify the page is responsive: Resize browser or view on mobile to ensure cards stack properly.
+11. Check for any console errors or broken styles.
+Zones Page Implementation - COMPLETED
+
+Modified Zone Model:
+- Added leader information fields: leader_name, leader_email, leader_phone, leader_home_address, leader_ada_wallet (all nullable)
+- Updated fillable array in Zone model
+- Created and ran migration to add columns to zones table
+
+Implemented Zones Page:
+- Created ZoneController with index() method to display all zones
+- Added GET /zones route in web.php
+- Created resources/views/zones/index.blade.php extending dashboard.layout
+- Displays zones in cards with leader contact information (name, email, phone, address, ADA wallet)
+- Updated sidebar "Zones" link to route to /zones
+- Added sample leader data to "Market Area" zone for testing
+
+Verification Plan:
+1. Navigate to /zones via sidebar "Zones" link
+2. Verify page shows "Community Zones" header
+3. Check that zones are displayed in cards
+4. For zones with leader info, verify contact details are shown with appropriate icons
+5. Test email and phone links are clickable
+6. Verify responsive design on different screen sizes
+7. Check zones without leader info show "No leader information available"
+
+EST/PAT Page Implementation - COMPLETED
+
+Token Types:
+- Energy Steward Token (EST): Gifted by stewards for reporting problems and participating in visibility activities
+- Power Access Token (PAT): Extra light unit tokens received when buying power with Ada
+
+Implemented EST/PAT Page:
+- Created EstPatController with index() method
+- Added GET /est-pat route in web.php
+- Created resources/views/est-pat/index.blade.php extending dashboard.layout
+- Designed comprehensive explanations for both token types with:
+  - What they are and how to earn them
+  - Visual icons and color-coded sections
+  - Current and future usage information
+  - Community impact explanations
+- Updated sidebar "EST/PAT" link to route to /est-pat
+
+Verification Plan:
+1. Navigate to /est-pat via sidebar "EST/PAT" link
+2. Verify page shows "EST & PAT Tokens" header
+3. Check EST section explains steward rewards for reporting and participation
+4. Check PAT section explains bonus tokens for Ada purchases
+5. Verify visual design with icons and color-coded borders
+6. Test responsive layout on different screen sizes
+7. Confirm future usage possibilities are clearly explained

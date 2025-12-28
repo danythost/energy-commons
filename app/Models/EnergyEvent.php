@@ -15,6 +15,8 @@ class EnergyEvent extends Model
         'type',
         'description',
         'status',
+        'image_path',
+        'text_file_path',
     ];
 
     public function scopePending($query)

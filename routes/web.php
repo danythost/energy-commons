@@ -22,6 +22,10 @@ Route::middleware(['auth', 'initialized'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/buy', [\App\Http\Controllers\BuyController::class, 'index'])->name('buy');
+    Route::post('/buy', [\App\Http\Controllers\BuyController::class, 'store'])->name('buy.store');
+    Route::get('/zones', [\App\Http\Controllers\ZoneController::class, 'index'])->name('zones');
+    Route::get('/est-pat', [\App\Http\Controllers\EstPatController::class, 'index'])->name('est-pat');
     Route::post('/energy/report', [EnergyEventController::class, 'store'])->name('energy.report');
 });
 
@@ -38,16 +42,11 @@ Route::middleware('auth')->group(function () {
 #Stewards View
 Route::middleware(['auth', 'initialized', 'steward'])->group(function () {
 
-    Route::get('/steward/dashboard', function () {
-        // Redundant check removed since middleware handles it, but kept for double safety if desired or refactor later
-        $events = \App\Models\EnergyEvent::with(['user', 'zone'])
-            ->where('zone_id', auth()->user()->zone_id)
-            ->latest()
-            ->take(20)
-            ->get();
-
-        return view('steward.dashboard', compact('events'));
-    })->name('steward.dashboard');
+    Route::get('/steward/dashboard', [\App\Http\Controllers\StewardController::class, 'index'])->name('steward.dashboard');
+    Route::get('/steward/stats', [\App\Http\Controllers\StewardController::class, 'stats'])->name('steward.stats');
+    Route::get('/steward/users', [\App\Http\Controllers\StewardController::class, 'users'])->name('steward.users');
+    Route::get('/steward/zones', [\App\Http\Controllers\StewardController::class, 'zones'])->name('steward.zones');
+    Route::get('/steward/validation', [\App\Http\Controllers\StewardController::class, 'validation'])->name('steward.validation');
 
     // Admin User Creation
     Route::get('/admin/users/create', [\App\Http\Controllers\AdminUserController::class, 'create'])->name('admin.users.create');

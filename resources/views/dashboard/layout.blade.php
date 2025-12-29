@@ -6,9 +6,9 @@
     <title>{{ config('app.name', 'Energy Commons') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-200 h-screen overflow-hidden flex items-center justify-center" x-data="{ sidebarOpen: false }">
+<body class="bg-gray-200 h-screen flex items-center justify-center" x-data="{ sidebarOpen: false }">
 
-    <div class="w-full max-w-md h-full bg-white shadow-xl relative flex overflow-hidden">
+    <div class="w-full max-w-md h-full bg-white shadow-xl relative flex">
         
         <!-- Sidebar -->
         <div 
@@ -103,7 +103,7 @@
         ></div>
 
         <!-- Main Content Wrapper -->
-        <div class="flex-1 flex flex-col h-full overflow-hidden w-full">
+        <div class="flex-1 flex flex-col h-full overflow-y-auto w-full">
             
             <!-- Mobile Header with Hamburger -->
             <div class="bg-blue-900 text-white p-4 flex items-center justify-between shrink-0 shadow-md z-20">

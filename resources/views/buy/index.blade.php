@@ -21,24 +21,22 @@
                 <input type="hidden" name="amount" id="formAmount">
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Bank Transfer -->
-                    <div class="border rounded-lg p-6 hover:shadow-md transition-shadow cursor-pointer border-blue-200" onclick="selectPayment('bank')">
+                    <!-- Pay with Ada-Cardano (FIRST) -->
+                    <div class="border rounded-lg p-6 hover:shadow-md transition-shadow cursor-pointer border-indigo-200" onclick="selectPayment('ada')">
                         <div class="flex flex-col items-center text-center">
-                            <div class="p-3 bg-blue-100 rounded-full mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                            <div class="p-3 bg-indigo-100 rounded-full mb-4">
+                                <!-- Cardano Logo Placeholder or generic crypto icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                                 </svg>
                             </div>
-                            <h4 class="font-bold text-lg mb-2">Bank Transfer</h4>
-                            <p class="text-sm text-gray-600 mb-4">Pay via local bank transfer.</p>
-                            <div class="space-y-2 w-full">
-                                <button type="button" class="w-full py-2 px-4 bg-gray-100 hover:bg-gray-200 rounded text-sm font-medium text-gray-700" onclick="selectBank('opay')">Opay</button>
-                                <button type="button" class="w-full py-2 px-4 bg-gray-100 hover:bg-gray-200 rounded text-sm font-medium text-gray-700" onclick="selectBank('moniepoint')">Moniepoint</button>
-                            </div>
+                            <h4 class="font-bold text-lg mb-2">Cardano (ADA)</h4>
+                            <p class="text-sm text-gray-600 mb-4">Pay using your Cardano wallet.</p>
+                            <button type="submit" class="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 rounded text-white font-medium" onclick="prepareSubmit('ada')">Connect Wallet</button>
                         </div>
                     </div>
 
-                    <!-- Pay with Token -->
+                    <!-- Pay with Token (SECOND) -->
                     <div class="border rounded-lg p-6 hover:shadow-md transition-shadow cursor-pointer border-green-200" onclick="selectPayment('token')">
                         <div class="flex flex-col items-center text-center">
                             <div class="p-3 bg-green-100 rounded-full mb-4">
@@ -52,18 +50,20 @@
                         </div>
                     </div>
 
-                    <!-- Pay with Ada-Cardano -->
-                    <div class="border rounded-lg p-6 hover:shadow-md transition-shadow cursor-pointer border-indigo-200" onclick="selectPayment('ada')">
+                    <!-- Bank Transfer (THIRD) -->
+                    <div class="border rounded-lg p-6 hover:shadow-md transition-shadow cursor-pointer border-blue-200" onclick="selectPayment('bank')">
                         <div class="flex flex-col items-center text-center">
-                            <div class="p-3 bg-indigo-100 rounded-full mb-4">
-                                <!-- Cardano Logo Placeholder or generic crypto icon -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            <div class="p-3 bg-blue-100 rounded-full mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
                                 </svg>
                             </div>
-                            <h4 class="font-bold text-lg mb-2">Cardano (ADA)</h4>
-                            <p class="text-sm text-gray-600 mb-4">Pay using your Cardano wallet.</p>
-                            <button type="submit" class="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 rounded text-white font-medium" onclick="prepareSubmit('ada')">Connect Wallet</button>
+                            <h4 class="font-bold text-lg mb-2">Bank Transfer</h4>
+                            <p class="text-sm text-gray-600 mb-4">Pay via local bank transfer.</p>
+                            <div class="space-y-2 w-full">
+                                <button type="button" class="w-full py-2 px-4 bg-gray-100 hover:bg-gray-200 rounded text-sm font-medium text-gray-700" onclick="selectBank('opay')">Opay</button>
+                                <button type="button" class="w-full py-2 px-4 bg-gray-100 hover:bg-gray-200 rounded text-sm font-medium text-gray-700" onclick="selectBank('moniepoint')">Moniepoint</button>
+                            </div>
                         </div>
                     </div>
                 </div>

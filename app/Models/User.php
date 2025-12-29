@@ -24,6 +24,8 @@ class User extends Authenticatable
         'role',
         'zone_id',
         'initialized',
+        'est_tokens',
+        'pat_tokens',
     ];
 
 

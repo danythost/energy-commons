@@ -65,4 +65,31 @@ class StewardController extends Controller
 
         return view('steward.validation', compact('events'));
     }
+
+    public function giftToken(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'token_type' => 'required|in:est,pat',
+            'amount' => 'required|integer|min:1|max:1000',
+        ]);
+
+        $user = \App\Models\User::findOrFail($request->user_id);
+
+        // Verify the user is in the steward's zone
+        if ($user->zone_id !== auth()->user()->zone_id) {
+            return back()->with('error', 'You can only gift tokens to users in your zone.');
+        }
+
+        // Update the appropriate token balance
+        if ($request->token_type === 'est') {
+            $user->increment('est_tokens', $request->amount);
+            $tokenName = 'EST (Energy Steward Token)';
+        } else {
+            $user->increment('pat_tokens', $request->amount);
+            $tokenName = 'PAT (Power Access Token)';
+        }
+
+        return back()->with('success', "Successfully gifted {$request->amount} {$tokenName} to {$user->name}!");
+    }
 }

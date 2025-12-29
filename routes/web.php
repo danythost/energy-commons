@@ -55,6 +55,9 @@ Route::middleware(['auth', 'initialized', 'steward'])->group(function () {
     // Energy Event Validation
     Route::post('/energy/validate', \App\Http\Controllers\EnergyEventValidationController::class)->name('energy.validate');
 
+    // Gift Token
+    Route::post('/steward/gift-token', [\App\Http\Controllers\StewardController::class, 'giftToken'])->name('steward.gift-token');
+
 });
 
 

@@ -73,5 +73,5 @@
             @endif
         </div>
     </div>
-@endsection</content>
+@endsection
 <parameter name="filePath">/opt/lampp/htdocs/energy-commons/resources/views/zones/index.blade.php

@@ -120,5 +120,5 @@
             </div>
         </div>
     </div>
-@endsection</content>
+@endsection
 <parameter name="filePath">/opt/lampp/htdocs/energy-commons/resources/views/est-pat/index.blade.php

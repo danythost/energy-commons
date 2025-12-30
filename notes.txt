@@ -186,3 +186,14 @@ Verification Plan:
 5. Verify visual design with icons and color-coded borders
 6. Test responsive layout on different screen sizes
 7. Confirm future usage possibilities are clearly explained
+
+TEST USER CREDENTIALS
+=====================
+sammy@gmail.com
+pass = pass09876
+
+admin@example.com
+pass = password
+
+test@energy.com
+pass = password

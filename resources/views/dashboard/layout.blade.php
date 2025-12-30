@@ -65,7 +65,7 @@
                 </a>
 
                 <!-- NFT Link -->
-                <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-800 hover:text-white text-blue-100">
+                <a href="{{ route('nft') }}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-800 hover:text-white text-blue-100 {{ request()->routeIs('nft') ? 'bg-blue-800 text-white' : '' }}">
                     NFT
                 </a>
 

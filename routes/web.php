@@ -26,6 +26,7 @@ Route::middleware(['auth', 'initialized'])->group(function () {
     Route::post('/buy', [\App\Http\Controllers\BuyController::class, 'store'])->name('buy.store');
     Route::get('/zones', [\App\Http\Controllers\ZoneController::class, 'index'])->name('zones');
     Route::get('/est-pat', [\App\Http\Controllers\EstPatController::class, 'index'])->name('est-pat');
+    Route::get('/nft', [\App\Http\Controllers\NftController::class, 'index'])->name('nft');
     Route::post('/energy/report', [EnergyEventController::class, 'store'])->name('energy.report');
 });
 

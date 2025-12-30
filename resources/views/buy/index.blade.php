@@ -32,7 +32,8 @@
                             </div>
                             <h4 class="font-bold text-lg mb-2">Cardano (ADA)</h4>
                             <p class="text-sm text-gray-600 mb-4">Pay using your Cardano wallet.</p>
-                            <button type="submit" class="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 rounded text-white font-medium" onclick="prepareSubmit('ada')">Connect Wallet</button>
+                            <button type="submit" class="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 rounded text-white font-medium mb-3" onclick="prepareSubmit('ada')">Connect Wallet</button>
+                            <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium underline" onclick="prepareSubmit('ada')">Connect Wallet Link</a>
                         </div>
                     </div>
 
@@ -84,7 +85,35 @@
         function prepareSubmit(method) {
             document.getElementById('paymentMethod').value = method;
             document.getElementById('formAmount').value = document.getElementById('amount').value;
-            document.getElementById('buyForm').submit();
+            
+            if (method === 'ada') {
+                connectYoroi();
+            } else {
+                document.getElementById('buyForm').submit();
+            }
+        }
+
+        async function connectYoroi() {
+            if (typeof window.cardano === 'undefined' || typeof window.cardano.yoroi === 'undefined') {
+                alert('Yoroi wallet not found. Please install the Yoroi extension.');
+                return;
+            }
+
+            try {
+                // CIP-30 connect
+                const api = await window.cardano.yoroi.enable();
+                if (api) {
+                    alert('Yoroi wallet connected successfully!');
+                    // In a real app, you might want to fetch the address or network id here
+                    // const address = await api.getUsedAddresses();
+                    
+                    // Proceed with form submission or next step
+                    document.getElementById('buyForm').submit();
+                }
+            } catch (err) {
+                console.error('Connection failed', err);
+                alert('Failed to connect to Yoroi wallet: ' + (err.info || err.message || 'Unknown error'));
+            }
         }
     </script>
 @endsection

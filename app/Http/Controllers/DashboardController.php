@@ -10,9 +10,6 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->role === 'steward') {
-            return redirect()->route('steward.dashboard');
-        }
 
 
 

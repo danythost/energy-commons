@@ -54,17 +54,14 @@
                 </a>
             </nav>
             
-            <!-- Logout / Return to App -->
+            <!-- User View Switch -->
             <div class="p-4 border-t border-gray-700 flex-shrink-0">
-                 <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="w-full text-left flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-red-600 text-red-300 hover:text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
-                        <span class="ml-2 block whitespace-nowrap">Logout</span>
-                    </button>
-                </form>
+                <a href="{{ route('dashboard') }}" class="w-full flex items-center py-2.5 px-4 rounded transition duration-200 bg-gray-700 hover:bg-gray-600 text-white font-semibold shadow-sm group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-300 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    User Dashboard
+                </a>
             </div>
         </div>
 

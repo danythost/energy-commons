@@ -8,17 +8,14 @@ use App\Http\Controllers\EnergyEventController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-#Default Route / is Login
-Route::get('/', function () {
-    return view('auth.login');
-})->name('login');
+#Default Route / is Dashboard
+Route::get('/', [DashboardController::class, 'index'])->name('login');
 
 #Dashboard Route
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'initialized'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 #Middleware Route
-#Middleware Route
-Route::middleware(['auth', 'initialized'])->group(function () {
+Route::group([], function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -31,8 +28,7 @@ Route::middleware(['auth', 'initialized'])->group(function () {
 });
 
 #Onboarding Route
-Route::middleware('auth')->group(function () {
-
+Route::group([], function () {
     Route::get('/onboarding', [OnboardingController::class, 'show'])
         ->name('onboarding');
 
@@ -41,8 +37,7 @@ Route::middleware('auth')->group(function () {
 });
 
 #Stewards View
-Route::middleware(['auth', 'initialized', 'steward'])->group(function () {
-
+Route::group([], function () {
     Route::get('/steward/dashboard', [\App\Http\Controllers\StewardController::class, 'index'])->name('steward.dashboard');
     Route::get('/steward/stats', [\App\Http\Controllers\StewardController::class, 'stats'])->name('steward.stats');
     Route::get('/steward/users', [\App\Http\Controllers\StewardController::class, 'users'])->name('steward.users');
@@ -58,8 +53,4 @@ Route::middleware(['auth', 'initialized', 'steward'])->group(function () {
 
     // Gift Token
     Route::post('/steward/gift-token', [\App\Http\Controllers\StewardController::class, 'giftToken'])->name('steward.gift-token');
-
 });
-
-
-#require __DIR__.'/auth.php';

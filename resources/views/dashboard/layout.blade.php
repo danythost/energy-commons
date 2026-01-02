@@ -27,16 +27,6 @@
                 </button>
             </div>
 
-            <!-- Profile Summary in Sidebar -->
-            <div class="p-4 border-b border-blue-800 flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center text-lg font-bold">
-                    {{ substr(Auth::user()->name, 0, 1) }}
-                </div>
-                <div class="overflow-hidden">
-                    <p class="font-semibold text-white truncate">{{ Auth::user()->name }}</p>
-                    <p class="text-xs text-blue-300 truncate">{{ Auth::user()->email }}</p>
-                </div>
-            </div>
 
             <nav class="mt-2 flex-1 overflow-y-auto py-2">
                 <!-- Dashboard Link -->
@@ -74,18 +64,14 @@
                     Upgrade
                 </a>
             </nav>
-            
-            <!-- Logout Button -->
+            <!-- Admin Switch -->
             <div class="p-4 border-t border-blue-800 flex-shrink-0">
-                 <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="w-full text-left flex items-center py-2.5 px-4 rounded transition duration-200 hover:bg-red-600 text-red-300 hover:text-white group">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
-                        Logout
-                    </button>
-                </form>
+                <a href="{{ route('steward.dashboard') }}" class="w-full flex items-center py-2.5 px-4 rounded transition duration-200 bg-blue-800 hover:bg-blue-700 text-white font-semibold shadow-sm group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-blue-300 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    Steward Portal
+                </a>
             </div>
         </div>
 

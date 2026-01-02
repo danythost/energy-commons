@@ -14,7 +14,7 @@
 @endif
 
 <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 mb-6">
-    <h2 class="font-semibold text-lg text-gray-800">Welcome, {{ Auth::user()->name }}</h2>
+    <h2 class="font-semibold text-lg text-gray-800">Welcome to Energy Commons</h2>
     <p class="text-gray-500 text-sm">Dashboard Overview</p>
 </div>
 
